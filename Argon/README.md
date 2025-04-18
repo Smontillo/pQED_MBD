@@ -1,26 +1,26 @@
 # pQED - MBD
 
-Repository to carry on pQED calculations with Many Body Dispersion corrections along a given coordinate. This reprository aims to reproduce the results presented by:
+Repository to carry on pQED calculations with Many Body Dispersion corrections along a given coordinate. This reprository aims to reproduce the results persented by:
 
 C. Tasci, L. A. Cunha and J. Flick on https://doi.org/10.1103/PhysRevLett.134.073002
 
 ## Tutorial (?)
 
-### 1- Create the Gaussian input file.
+### 1- Create the input Gaussian file.
 The file must be named as **geometry.log**. This code is able to scan along a given coordinate for *Z-Matrix* input files (this must be change to work with a most general approach).
 
 ### 2- Run **run_GeomScan.sh**
-A "Calc_Res" folder is created, inside of it a Geom folder for each of the geometries is created and the single TDDFT calculation is performed.
+A "Calc_Res" folder is create, inside of it a Geom folder for each of the geometries is created and the single TDDFT calculation is performed.
 
 **Specify** 
  - B $\rightarrow$ Initial "bond lenght".
  - dx $\rightarrow$ Step size at which the bond will be vary. 
 
 ### 3- Run **run_DipMat.sh** 
-Runs the "*get_HAM_and_DIP_Matrix.py*" at each geometry and creates the dipole data.
+Runs the *get_HAM_and_DIP_Matrix.py* at each geometry and creates the dipole data.
 
 *IMPORTANT!!!* $\rightarrow$ Make sure that the path in the
-function "**get_user_Globals()**" of "**get_HAM_and_DIP_Matrix.py**" matches the one in which your "*multiwfn*" is located.
+function **get_user_Globals()** of **get_HAM_and_DIP_Matrix.py** matches the one in which your *multiwfn* is located.
 
 **Specify** 
  - B $\rightarrow$ Initial "bond lenght".

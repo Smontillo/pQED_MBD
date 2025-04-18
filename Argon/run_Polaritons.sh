@@ -12,13 +12,16 @@ Binf=$(echo "(25 - $B) / $dx" | bc )  # Number of steps to reach the reference e
 # Creates the Pauli Fierz Hamiltonian and diagonalize it for the creation of the polariton states and energies.
 # =============================================================================================================
 
+# =============================================================================================================
+# X POLARIZARIZATION
+# =============================================================================================================
 cd Calc_Res
 
 for k in $(seq 0 $Bfin) $Binf; do
 echo "Geom$k"
 cd Geom$k
-mkdir PF_run 2>/dev/null
-cd PF_run
+mkdir X_pol 2>/dev/null
+cd X_pol
 rm data_PF/* 2>/dev/null
 cp ../../../Pauli-Fierz_DdotE.py .
 cp ../../../submit.polariton .
@@ -31,8 +34,8 @@ WC_MIN="2.0"          # One frequency point
 WC_MAX="2.0"
 dWC="1.0"
 
-lam_MIN='0.0'
-lam_MAX='0.1'
+lam_MIN='0.00'
+lam_MAX='0.05'
 dlam='0.05'
 
 E_POL="100" # Electric field polarization. 
@@ -54,9 +57,68 @@ done
 cd ../../
 done
 
-#### FOR THETA/PHI SCAN ####
-# for A in {0.1,0.2,0.3,0.4}; do
-#     sbatch submit.polariton ${A}
-# done
+# =============================================================================================================
+# Z POLARIZARIZATION
+# =============================================================================================================
 
 
+for k in $(seq 0 $Bfin) $Binf; do
+echo "Geom$k"
+cd Geom$k
+mkdir Z_pol 2>/dev/null
+cd Z_pol
+rm data_PF/* 2>/dev/null
+cp ../../../Pauli-Fierz_DdotE.py .
+cp ../../../submit.polariton .
+
+E_POL="001" # Electric field polarization. 
+            # Input as three positive integers. 
+            # Will normalize later.
+
+NM=200      # Number of electronic states
+NF=10       # Number of photonic Fock states
+
+Nlam=$(printf %.0f $(echo "($lam_MAX-$lam_MIN)/$dlam" | bc -l))
+NWC=$(printf %.0f $(echo "($WC_MAX-$WC_MIN)/$dWC" | bc -l))
+
+for (( a=0; a<=Nlam; a++ )); do
+        # A0=$( bc -l <<< $a*$dA0+$A0_MIN )
+        lam=$( bc -l <<< $a*$dlam+$lam_MIN )
+        sbatch submit.polariton ${lam} ${NM} ${NF} ${NWC} ${WC_MIN} ${WC_MAX} ${dWC} ${E_POL}
+        # sbatch submit.polariton ${A0} ${NM} ${NF} ${NWC} ${WC_MIN} ${WC_MAX} ${dWC} ${E_POL}
+done
+cd ../../
+done
+
+# =============================================================================================================
+# Y POLARIZARIZATION
+# =============================================================================================================
+
+
+for k in $(seq 0 $Bfin) $Binf; do
+echo "Geom$k"
+cd Geom$k
+mkdir Y_pol 2>/dev/null
+cd Y_pol
+rm data_PF/* 2>/dev/null
+cp ../../../Pauli-Fierz_DdotE.py .
+cp ../../../submit.polariton .
+
+E_POL="010" # Electric field polarization. 
+            # Input as three positive integers. 
+            # Will normalize later.
+
+NM=200      # Number of electronic states
+NF=10       # Number of photonic Fock states
+
+Nlam=$(printf %.0f $(echo "($lam_MAX-$lam_MIN)/$dlam" | bc -l))
+NWC=$(printf %.0f $(echo "($WC_MAX-$WC_MIN)/$dWC" | bc -l))
+
+for (( a=0; a<=Nlam; a++ )); do
+        # A0=$( bc -l <<< $a*$dA0+$A0_MIN )
+        lam=$( bc -l <<< $a*$dlam+$lam_MIN )
+        sbatch submit.polariton ${lam} ${NM} ${NF} ${NWC} ${WC_MIN} ${WC_MAX} ${dWC} ${E_POL}
+        # sbatch submit.polariton ${A0} ${NM} ${NF} ${NWC} ${WC_MIN} ${WC_MAX} ${dWC} ${E_POL}
+done
+cd ../../
+done
