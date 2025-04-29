@@ -1,0 +1,15 @@
+[0.0, 0.05]
+Traceback (most recent call last):
+  File "plot_polaritons.py", line 90, in <module>
+    main()
+  File "plot_polaritons.py", line 81, in main
+    EPOL = get_energies()
+  File "plot_polaritons.py", line 50, in get_energies
+    EPOL[0, A0IND, WCIND]  = np.loadtxt(f"data_PF/E_{EVEC_OUT}_lam_{lam}_WC_{WC}_NF_{NF}_NM_{NM}.dat")
+  File "/software/anaconda3/2021.05/lib/python3.8/site-packages/numpy/lib/npyio.py", line 1065, in loadtxt
+    fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+  File "/software/anaconda3/2021.05/lib/python3.8/site-packages/numpy/lib/_datasource.py", line 194, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+  File "/software/anaconda3/2021.05/lib/python3.8/site-packages/numpy/lib/_datasource.py", line 531, in open
+    raise IOError("%s not found." % path)
+OSError: data_PF/E_1_0_0_lam_0.0_WC_2.0_NF_10_NM_200.dat not found.
