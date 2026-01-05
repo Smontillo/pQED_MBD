@@ -3,7 +3,7 @@
 %nprocshared=12
 
 #p PBE1PBE/aug-cc-pVDZ EmpiricalDispersion=GD3
-#p TD=(singlets,nstates=200) IOp(6/8=3) IOp(9/40=4)
+#p TD=(singlets,nstates=432) IOp(6/8=3, 9/40=4, 8/10=90)
 
 Title Card Required
 
