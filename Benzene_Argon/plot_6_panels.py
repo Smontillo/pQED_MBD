@@ -246,4 +246,4 @@ ax[1,1].plot(0, 3.45,marker='o', markersize=MS+TO, color='black', fillstyle='non
 ax[1,1].plot(0, 3.45,marker='o', markersize=MS-TO, color='black', fillstyle='none', markeredgewidth=MW)
 ax[1,1].plot(0, 3.45,marker='o', markersize=MS, color='#92c6c9', fillstyle='none', markeredgewidth=MW)
 
-plt.savefig('./Images/Benzene-Ar_6panel.pdf', dpi = 300, bbox_inches = 'tight')
+plt.savefig('./Images/Benzene-Ar_6panel.png', dpi = 300, bbox_inches = 'tight')
