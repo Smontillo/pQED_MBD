@@ -32,18 +32,8 @@ RDiff_CC_Z   = np.loadtxt('./Data/R_Diff_CC_Z.dat')
 nEl_Con = np.loadtxt('./Data/nEl_Con.dat')
 nF_Con  = np.loadtxt('./Data/nF_Con.dat')
 
-refEn  = 1 #np.min(RScan_G[:,1]) * 1/100
-print(refEn)
+refEn  = 1
 fig, ax =  plt.subplots(3,2,figsize=(6,8),constrained_layout=True)
-# panel_labels = ['(a)', '(b)', '(c)', '(d)', '(e)', '(f)']
-
-# for label, axi in zip(panel_labels, ax.flatten()):
-#     axi.text(-0.5, 0.9, label,
-#         transform=axi.transAxes,  # coords are in "axis fraction"
-#         fontsize=13,
-#         ha='left', va='top'
-#     )
-
 # ================================================================
 # R COORDINATE DATA
 # ================================================================
@@ -94,9 +84,6 @@ ax2.plot(np.NaN, np.NaN, marker= 'o', markersize= 2, ls=' ',lw = 1,label='QED-CC
 ax2.get_yaxis().set_visible(False)
 ax2.legend(loc=0, frameon = False, ncol=1, fontsize = 8, title='Method', title_fontsize='10', handlelength=1.7, handletextpad=0.5,columnspacing=0.5)
 ax[0,1].text(6,-27.5, r'$\lambda = 0.05$', fontsize=12)
-
-# ax[0,0].grid()
-# ax[0,1].grid()
 # ================================================================
 # CONVERGENCE DATA
 # ================================================================
@@ -109,7 +96,6 @@ ax[2,0].set_xlabel(r'Electronic States, N$_\mathrm{el}$ (x 10$^{3}$)')
 ax[2,0].set_ylabel(r'$\Delta$E(R) - $\Delta$E(R)$_{N_{el}=10^3}$ (meV)')
 ax[2,0].set_xlim(nEl_Con[0,0],nEl_Con[-1,0])
 ax[2,0].set_ylim(-80,40)
-# ax[1,0].set_xticks([100,200,300,400])
 ax[2,0].set_yticks(np.arange(-80,80,40))
 sub_ax = inset_axes(ax[2,0], width="55%", height="35%", loc=4)
 sub_ax.axhline(refEn, lw = 1, ls = '-', c = 'black')
@@ -123,7 +109,6 @@ sub_ax.set_yticks([-1,0,1])
 sub_ax.tick_params(axis='y', labelsize=7) 
 sub_ax.xaxis.set_visible(False)
 mark_inset(ax[2,0], sub_ax, loc1=1, loc2=2, fc='none', ec='black', ls='--', lw = 0.7)
-# ax[1,0].grid()
 ax[2,1].axhline(refEn, lw = 1, ls = '-', c = 'black')
 ax[2,1].axhline(-refEn, lw = 1, ls = '-', c = 'black')
 ax[2,1].plot(nF_Con[:,0], nF_Con[:,1], lw = 2, ls = '-', marker = 'o', markersize = 3, label = f"{direc[0]}", c = '#3498db')
@@ -131,7 +116,6 @@ ax[2,1].plot(nF_Con[:,0], nF_Con[:,2], lw = 2, ls = '-', marker = 'o', markersiz
 ax[2,1].plot(nF_Con[:,0], nF_Con[:,3], lw = 2, ls = '-', marker = 'o', markersize = 3, label = f"{direc[2]}", c = '#e74c3c')
 ax[2,1].set_xlabel(r'Fock States, N$_\mathrm{F}$')
 ax[2,1].set_ylabel(r'$\Delta$E(R) - $\Delta$E(R)$_{N_F=6}$ (meV)')
-# ax[1,1].grid()
 ax[2,1].set_xlim(nF_Con[0,0],6)
 ax[2,1].set_ylim(-4,5)
 ax[2,1].set_yticks(np.arange(-4,5,2))
@@ -143,8 +127,6 @@ fig.text(0.51, 0.97, f'(b)', fontsize=fsize)
 fig.text(0.51, 0.64, f'(d)', fontsize=fsize)
 fig.text(0, 0.31, f'(e)', fontsize=fsize)
 fig.text(0.51, 0.31, f'(f)', fontsize=fsize)
-
-# plt.tight_layout(pad=0.1)
 
 #===Density Plots===#
 Den_X        = np.loadtxt('./Data/Density3D_X.dat')
@@ -264,20 +246,4 @@ ax[1,1].plot(0, 3.45,marker='o', markersize=MS+TO, color='black', fillstyle='non
 ax[1,1].plot(0, 3.45,marker='o', markersize=MS-TO, color='black', fillstyle='none', markeredgewidth=MW)
 ax[1,1].plot(0, 3.45,marker='o', markersize=MS, color='#92c6c9', fillstyle='none', markeredgewidth=MW)
 
-
-# ax[1,1].plot(-0.5, 0.3, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(0.6, 0.3, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(1.96, -0.12, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(-1.96, -0.12, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(-0.5, -0.65, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(0.6, -0.65, marker='o', markersize=MS, color='black', fillstyle='none', markeredgewidth=MW)
-# # ax[1,1].plot(0, 0, marker='o', markersize=MS+TO, color='black', fillstyle='none', markeredgewidth=MW)
-# # ax[1,1].plot(0, 0, marker='o', markersize=MS, color=‘#92c6c9', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(0.03, 3.45,marker='o', markersize=MS+TO, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(0.03, 3.45,marker='o', markersize=MS-TO, color='black', fillstyle='none', markeredgewidth=MW)
-# ax[1,1].plot(0.03, 3.45,marker='o', markersize=MS, color='#92c6c9', fillstyle='none', markeredgewidth=MW)
-
-# ax[1,0].text(1.4,-1.7, r'$\lambda = 0.1$', fontsize=12)
-# ax[1,1].text(1.4,-1.7, r'$\lambda = 0.1$', fontsize=12)
-
-plt.savefig('./Images/Benzene-AR_6panel.png', dpi = 300, bbox_inches = 'tight')
+plt.savefig('./Images/Benzene-Ar_6panel.pdf', dpi = 300, bbox_inches = 'tight')
