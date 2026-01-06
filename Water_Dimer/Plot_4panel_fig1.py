@@ -190,4 +190,4 @@ fig.text(0.47, 0.98, f'(b)', fontsize=fsize)
 fig.text(0.47, 0.47, f'(d)', fontsize=fsize)
 
 plt.tight_layout(pad=0.1)
-plt.savefig('./Images/WaterData_fig1.pdf', dpi = 300, bbox_inches = 'tight')
+plt.savefig('./Images/WaterData_fig1.png', dpi = 300, bbox_inches = 'tight')
