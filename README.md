@@ -14,5 +14,4 @@ Each folder contains the initial geometry (Gaussian16 input file), output data (
 
 The codes used to generate the results in the paper are available in the *PolaritonCodes* folder.
 
-For more detail information on these codes, check *Braden M. Weight* repository:
-- https://github.com/bradenmweight/Ab_Initio_Polariton_Properties
+
